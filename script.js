@@ -1,4 +1,14 @@
 for(var i = 9; i < 18; i++){
+    var currentTime = moment().hour()
+    console.log(currentTime)
+    var colorCode = "past"
+    if(currentTime === i){
+        colorCode = "present"
+    }
+    else if(currentTime < i){
+        colorCode = "future"
+    }
+
     if(i < 12){
         var hourDisplay = i+" am"
     }
@@ -10,7 +20,7 @@ for(var i = 9; i < 18; i++){
     }
     var rowDiv = $("<div>").addClass("row time-block").attr("id",i)
     var hourDiv = $("<div>").addClass("col-2 hour").text(hourDisplay)
-    var textAreaEl = $("<textarea>").addClass("col-8 description").val(localStorage.getItem(i))
+    var textAreaEl = $("<textarea>").addClass("col-8 description " + colorCode).val(localStorage.getItem(i))
     var button = $("<button>").addClass("saveBtn").text("Save")
     $(".container").append(rowDiv.append(hourDiv, textAreaEl, button))
 }
